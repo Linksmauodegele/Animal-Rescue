@@ -33,6 +33,7 @@ export default function AdminPage() {
         { href: "/admin/anketa", icon: "📋", label: "Adopcijos anketa", desc: "Keisti Google Forms nuorodą" },
         { href: "/admin/partners", icon: "🤝", label: "Partneriai", desc: "Valdyti partnerių logotipus ir nuorodas" },
         { href: "/admin/remejai", icon: "💛", label: "Rėmėjai", desc: "Valdyti rėmėjų sąrašą" },
+        { href: "/admin/footer", icon: "🦶", label: "Puslapio apačia", desc: "Redaguoti kontaktus, adresą, nuorodas" },
       ],
     },
   ];
