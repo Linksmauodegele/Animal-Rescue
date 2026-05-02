@@ -47,7 +47,8 @@ export default function FinansinePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
             <a
-              href="#paypal-url-here"
+              href="https://www.paypal.com/donate/?hosted_button_id=YRY662EAYBHLC"
+              target="_blank"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-[#1e1a17] transition-all hover:-translate-y-1 hover:shadow-xl"
               style={{ background: "#FFD700" }}
               rel="noopener noreferrer"
@@ -59,7 +60,8 @@ export default function FinansinePage() {
               PayPal parama
             </a>
             <a
-              href="#contribee-url-here"
+              href="https://contribee.com/linksma-uodegele"
+              target="_blank"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-white transition-all hover:-translate-y-1 hover:shadow-xl"
               style={{ background: "#c4622d" }}
               rel="noopener noreferrer"
