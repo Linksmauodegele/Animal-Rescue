@@ -19,7 +19,7 @@ export default function BlogSection({ fullPage = false }: { fullPage?: boolean }
 
   useEffect(() => {
     supabase.from("posts").select("id,title,slug,excerpt,cover_image_url,published_at")
-      .eq("published", true).order("published_at", { ascending: false }).limit(3)
+      .eq("published", true).order("published_at", { ascending: false }).limit(fullPage ? 100 : 3)
       .then(({ data }) => { if (data) setPosts(data); });
   }, []);
 
