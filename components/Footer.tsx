@@ -1,6 +1,7 @@
+"use client";
 import Link from "next/link";
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 const DEFAULT_FOOTER = {
   phone: "+370 658 90300",
@@ -21,31 +22,21 @@ const DEFAULT_FOOTER = {
   ],
 };
 
-export default async function Footer() {
-  let footer = DEFAULT_FOOTER;
+export default function Footer() {
+  const [footer, setFooter] = useState(DEFAULT_FOOTER);
 
-  try {
-    const cookieStore = await cookies();
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() { return cookieStore.getAll(); },
-          setAll() {},
-        },
+  useEffect(() => {
+    async function fetchFooter() {
+      const { data } = await supabase.from("footer_settings").select("*").limit(1).single();
+      if (data) {
+        setFooter({
+          ...data,
+          nav_links: typeof data.nav_links === "string" ? JSON.parse(data.nav_links) : (data.nav_links ?? DEFAULT_FOOTER.nav_links),
+        });
       }
-    );
-    const { data } = await supabase.from("footer_settings").select("*").limit(1).single();
-    if (data) {
-      footer = {
-        ...data,
-        nav_links: typeof data.nav_links === "string" ? JSON.parse(data.nav_links) : (data.nav_links ?? DEFAULT_FOOTER.nav_links),
-      };
     }
-  } catch {
-    // fallback to defaults
-  }
+    fetchFooter();
+  }, []);
 
   return (
     <footer className="bg-[#1e1a17] text-[#b0946a] py-14" role="contentinfo">
