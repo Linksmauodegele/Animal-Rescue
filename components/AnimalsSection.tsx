@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 type Animal = {
@@ -112,7 +113,7 @@ export default function AnimalsSection({ fullPage }: { fullPage?: boolean }) {
                   <div className="h-52 flex items-center justify-center relative overflow-hidden"
                     style={{ background: TYPE_COLORS[animal.type] || "#f0d8b0" }}>
                     {animal.image_url ? (
-                      <img src={animal.image_url} className="w-full h-full object-cover" alt={animal.name} />
+                      <Image src={animal.image_url} alt={`${animal.name} – ${animal.type === "dog" ? "šuo" : "katė"} ieško namų Vilniuje`} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                     ) : (
                       <span className="text-7xl group-hover:scale-110 transition-transform duration-300">
                         {TYPE_EMOJI[animal.type] || "🐾"}

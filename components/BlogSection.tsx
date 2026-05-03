@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 type Post = {
@@ -73,7 +74,7 @@ export default function BlogSection({ fullPage = false }: { fullPage?: boolean }
                 <div className="h-32 flex items-center justify-center text-5xl overflow-hidden"
                   style={{ background: COLORS[i % COLORS.length] }}>
                   {post.cover_image_url
-                    ? <img src={post.cover_image_url} className="w-full h-full object-cover" />
+                    ? <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                     : EMOJIS[i % EMOJIS.length]}
                 </div>
                 <div className="p-6">

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 type Partner = {
@@ -40,7 +41,7 @@ export default function PartnersSection() {
             >
               <div className="h-12 px-5 flex items-center justify-center rounded-lg border border-[#e8d8be] bg-white group-hover:border-[#c4622d]/30 group-hover:shadow-sm transition-all" style={{ minWidth: 100 }}>
                 {p.logo_url ? (
-                  <img src={p.logo_url} alt={p.name} className="h-8 object-contain" />
+                  <Image src={p.logo_url} alt={p.name} width={120} height={32} className="h-8 w-auto object-contain" />
                 ) : (
                   <span className="font-bold text-sm text-[#3d2e1e] tracking-wide">{p.name}</span>
                 )}

@@ -4,6 +4,18 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.supabase.com",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
   },
   compress: true,
   poweredByHeader: false,
@@ -19,7 +31,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*)\\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)",
+        source: "/(.*)\\.( jpg|jpeg|png|webp|avif|svg|ico|woff2)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 type Remejas = {
@@ -43,7 +44,7 @@ export default function RemejaiSection() {
             >
               <div className="h-14 px-5 flex items-center justify-center rounded-xl border border-[#e8d8be] bg-[#faf6f0] group-hover:border-[#c4622d]/30 group-hover:shadow-sm transition-all" style={{ minWidth: 110 }}>
                 {r.logo_url ? (
-                  <img src={r.logo_url} alt={r.name} className="h-9 object-contain" />
+                  <Image src={r.logo_url} alt={r.name} width={120} height={36} className="h-9 w-auto object-contain" />
                 ) : (
                   <span className="font-bold text-sm text-[#3d2e1e] tracking-wide text-center">{r.name}</span>
                 )}
