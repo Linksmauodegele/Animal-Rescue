@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const STEPS = [
-  { step: "1", title: "Eikite į EDS sistemą", desc: "Apsilankykite eds.vmi.lt ir prisijunkite per el. bankininkystę arba el. parašą." },
+  { step: "1", title: "Eikite į deklaravimas.vmi.lt", desc: "Apsilankykite deklaravimas.vmi.lt ir prisijunkite per el. bankininkystę arba el. parašą." },
   { step: "2", title: "Raskite FR0512 formą", desc: "Ieškokite prašymo skirti pajamų mokesčio dalį arba FR0512." },
   { step: "3", title: "Įveskite mūsų kodą", desc: "Gavėjo paieškoje įrašykite Linksma uodegele arba kodą 306212187." },
   { step: "4", title: "Patvirtinkite", desc: "Pateikite formą. Viskas — jūs padėjote gyvūnams nieko papildomai neišleidę!" },
@@ -44,12 +44,12 @@ export default function GpmPage() {
                   Gavėjo paieškos langelyje įrašykite <strong>VšĮ Linksma uodegėlė</strong> arba kodą <strong>306212187</strong>.
                 </p>
                 <a
-                  href="https://eds.vmi.lt"
+                  href="https://deklaravimas.vmi.lt"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 btn-primary text-sm py-3 px-6 w-full justify-center"
                 >
-                  Pildyti EDS formą →
+                  Pildyti formą deklaravimas.vmi.lt →
                 </a>
               </div>
 

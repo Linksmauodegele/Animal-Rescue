@@ -18,6 +18,7 @@ export default function AdminPage() {
         { href: "/admin/rado-namus", icon: "🏠", label: "Rado namus", desc: "Įvaikintų gyvūnų sąrašas" },
         { href: "/admin/apie", icon: "ℹ️", label: "Apie mus", desc: "Redaguoti tekstą ir vertybes" },
         { href: "/admin/blog", icon: "📝", label: "Naujienos / Tinklaraštis", desc: "Rašyti ir valdyti straipsnius" },
+        { href: "/admin/projects", icon: "🚀", label: "Projektai", desc: "Valdyti projektus ir kampanijas" },
       ],
     },
     {
@@ -34,6 +35,7 @@ export default function AdminPage() {
         { href: "/admin/anketa", icon: "📋", label: "Adopcijos anketa", desc: "Keisti Google Forms nuorodą" },
         { href: "/admin/partners", icon: "🤝", label: "Partneriai", desc: "Valdyti partnerių logotipus ir nuorodas" },
         { href: "/admin/remejai", icon: "💛", label: "Rėmėjai", desc: "Valdyti rėmėjų sąrašą" },
+        { href: "/admin/contacts", icon: "📍", label: "Kontaktai", desc: "Redaguoti kontaktų puslapio informaciją" },
         { href: "/admin/footer", icon: "🦶", label: "Puslapio apačia", desc: "Redaguoti kontaktus, adresą, nuorodas" },
       ],
     },

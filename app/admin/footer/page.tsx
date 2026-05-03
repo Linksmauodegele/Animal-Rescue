@@ -17,7 +17,7 @@ type FooterData = {
 const DEFAULT: FooterData = {
   phone: "+370 658 90300",
   email: "info@linksmauodegele.lt",
-  address_post: "Didlaukio g. 80A, Vilnius",
+  address_post: "Didlaukio g. 78-16, Vilnius",
   address_cat_house: "Ateities g. 25B, Vilnius (Tavo Katino svetainė – kačių namai)",
   facebook_url: "https://www.facebook.com/linksmauodegele",
   company_code: "306212187",
@@ -67,18 +67,22 @@ export default function FooterAdmin() {
     setLoading(true);
     const payload = { ...form };
     if (form.id) {
-      await supabase
+      const { error } = await supabase
         .from("footer_settings")
         .update(payload)
         .eq("id", form.id);
+      if (error) console.error("Footer update error:", error);
     } else {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("footer_settings")
         .insert(payload)
         .select()
         .single();
+      if (error) console.error("Footer insert error:", error);
       if (data) setForm((f) => ({ ...f, id: data.id }));
     }
+    // Re-fetch to confirm saved data
+    await fetchFooter();
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
     setLoading(false);
@@ -171,7 +175,7 @@ export default function FooterAdmin() {
                 />
               </div>
               <div>
-                <label className={labelClass}>Paštomato adresas</label>
+                <label className={labelClass}>Registracijos adresas</label>
                 <input
                   className={inputClass}
                   value={form.address_post}

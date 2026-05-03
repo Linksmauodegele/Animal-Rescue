@@ -18,6 +18,7 @@ const NAV_ITEMS = [
     ],
   },
   { href: "/naujienos", label: "Naujienos" },
+  { href: "/projektai", label: "Projektai" },
   { href: "/kontaktai", label: "Kontaktai" },
 ];
 

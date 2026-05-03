@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 const DEFAULT_FOOTER = {
   phone: "+370 658 90300",
   email: "info@linksmauodegele.lt",
-  address_post: "Didlaukio g. 80A, Vilnius (registracijos adresas)",
+  address_post: "Didlaukio g. 78-16, Vilnius",
   address_cat_house: "Ateities g. 25B, Vilnius (Tavo Katino svetainė – kačių namai)",
   facebook_url: "https://www.facebook.com/linksmauodegele",
   company_code: "306212187",
@@ -79,7 +79,7 @@ export default function Footer() {
                 <a href={`mailto:${footer.email}`} className="hover:text-white transition-colors">{footer.email}</a>
               </li>
               <li>
-                <span className="block text-[#7a5c40] text-xs uppercase tracking-wider mb-0.5">Paštomatas</span>
+                <span className="block text-[#7a5c40] text-xs uppercase tracking-wider mb-0.5">Registracijos adresas</span>
                 <span>{footer.address_post}</span>
               </li>
               <li>

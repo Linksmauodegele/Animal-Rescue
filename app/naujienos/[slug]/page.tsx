@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 
 type Post = {
   id: string; title: string; slug: string; excerpt: string;
-  content: string; cover_image_url: string; published_at: string;
+  content: string; cover_image_url: string; video_url: string; published_at: string;
 };
 
 export default function PostPage() {
@@ -35,6 +35,23 @@ export default function PostPage() {
               {post.cover_image_url && (
                 <img src={post.cover_image_url} className="w-full h-64 object-cover" />
               )}
+              {post.video_url && (() => {
+                const ytMatch = post.video_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+                const embedId = ytMatch?.[1];
+                return embedId ? (
+                  <div className="aspect-video bg-black">
+                    <iframe
+                      className="w-full h-full"
+                      src={`https://www.youtube.com/embed/${embedId}`}
+                      title="Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <video src={post.video_url} controls className="w-full max-h-96 bg-black" />
+                );
+              })()}
               <div className="p-10">
                 <p className="text-xs text-[#7a5c40] mb-3">
                   {post.published_at ? new Date(post.published_at).toLocaleDateString("lt-LT", { year: "numeric", month: "long", day: "numeric" }) : ""}

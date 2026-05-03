@@ -73,10 +73,9 @@ export default function SupportSection() {
             <p className="text-[#c9973a] font-mono text-base mt-1 font-bold tracking-wide">LT237044090104254458</p>
             <p className="text-[#8aab7a] text-xs mt-1">(SEB)</p>
             <div className="mt-3 pt-3 border-t border-white/10 text-xs text-[#8aab7a]">
-              Paskirtis: Auka / FR0512 forma: paieškos laukelyje įrašykite<br/>
-              VšĮ „Linksma uodegėlė“ identifikacinį numerį – <span className="text-white font-mono">306212187</span>
+            <div className="mt-3 pt-3 border-t border-white/10 text-xs text-[#8aab7a]">
+              Paskirtis: <span className="text-white font-semibold">Auka</span>
             </div>
-          </div>
         </div>
       </section>
 
@@ -115,7 +114,7 @@ export default function SupportSection() {
             {/* Steps */}
             <div className="space-y-4">
               {[
-                { step: "1", title: "Prisijunkite prie VMI", desc: "Eikite į vmi.lt ir prisijunkite prie savitarnos sistemos." },
+                { step: "1", title: "Apsilankykite deklaravimas.vmi.lt", desc: "Prisijunkite per el. bankininkystę arba el. parašą." },
                 { step: "2", title: "Raskite FR0512 formą", desc: "Gyventojo pajamų mokesčio permokos (dalies) grąžinimo prašymas." },
                 { step: "3", title: "Įveskite mūsų kodą", desc: "Gavėjo paieškoje įrašykite Linksma uodegėlė arba kodą 306212187." },
                 { step: "4", title: "Patvirtinkite", desc: "Pateikite formą. Viskas – jūs padėjote gyvūnams!" },
@@ -131,12 +130,12 @@ export default function SupportSection() {
                 </div>
               ))}
               <a
-                href="https://www.vmi.lt/evmi/gyventojams/pajamu-mokescio-deklaravimas/"
+                href="https://deklaravimas.vmi.lt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-4 btn-primary text-sm py-3 px-6"
               >
-                Pildyti VMI formą →
+                Pildyti formą deklaravimas.vmi.lt →
               </a>
             </div>
           </div>

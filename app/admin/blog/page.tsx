@@ -9,13 +9,14 @@ type Post = {
   excerpt: string;
   content: string;
   cover_image_url: string;
+  video_url: string;
   published: boolean;
   published_at: string | null;
 };
 
 const EMPTY: Omit<Post, "id"> = {
   title: "", slug: "", excerpt: "", content: "",
-  cover_image_url: "", published: false, published_at: null,
+  cover_image_url: "", video_url: "", published: false, published_at: null,
 };
 
 function toSlug(s: string) {
@@ -130,6 +131,11 @@ export default function BlogAdmin() {
                   <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImageUpload} />
                 </div>
                 {form.cover_image_url && <img src={form.cover_image_url} className="mt-2 h-20 rounded-xl object-cover" />}
+              </div>
+              <div>
+                <label className="label">🎬 Video URL (YouTube arba kita nuoroda)</label>
+                <input className="input" value={form.video_url} onChange={e => setForm(f => ({ ...f, video_url: e.target.value }))} placeholder="https://www.youtube.com/watch?v=..." />
+                <p className="text-xs text-[#7a5c40] mt-1">Jei įvesite YouTube nuorodą, vaizdo įrašas rodomas straipsnyje po paveikslėliu.</p>
               </div>
               <div className="sm:col-span-2">
                 <label className="label">Santrauka</label>
