@@ -75,6 +75,7 @@ export default function SupportSection() {
             <div className="mt-3 pt-3 border-t border-white/10 text-xs text-[#8aab7a]">
               Paskirtis: <span className="text-white font-semibold">Auka</span>
             </div>
+          </div>
         </div>
       </section>
 
