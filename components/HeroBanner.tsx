@@ -1,9 +1,27 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function HeroBanner() {
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const [hero, setHero] = useState({
+    label: "{hero.label}",
+    heading_line1: "Kiekviena",
+    heading_highlight: "uodegėlė",
+    heading_line3: "verta namų",
+    description: "Mes gelbstim sužeistus ir beglobiams likusius gyvūnus. Suteikiame veterinarinę pagalbą, laikiną globą ir ieškome jiems tikrų namų.",
+    btn_primary_text: "🐾 Žiūrėti globotinius",
+    btn_primary_href: "/gyvunai",
+    btn_secondary_text: "♥ Prisidėti",
+    btn_secondary_href: "/parama",
+  });
+
+  useEffect(() => {
+    supabase.from("hero_content").select("*").limit(1).single().then(({ data }) => {
+      if (data) setHero(data);
+    });
+  }, []);
 
   // Desktop video — fades out near end, loops after 6s pause
   useEffect(() => {
@@ -86,28 +104,28 @@ export default function HeroBanner() {
         {/* Text overlaid at the top */}
         <div className="absolute top-0 left-0 right-0 px-6 pt-24 pb-4 z-10">
           <p className="text-[#7a4f1e] text-xs font-bold tracking-[0.22em] uppercase mb-3">
-            Gyvūnų prieglauda · Vilnius
+            {hero.label}
           </p>
           <h1
             className="font-display text-[clamp(2rem,8vw,3rem)] font-black leading-[1.04] mb-5"
             style={{ color: "#2d1e0e" }}
           >
-            Kiekviena
+            {hero.heading_line1}
             <br />
-            <em style={{ fontStyle: "italic", color: "#c4622d" }}>uodegėlė</em>
+            <em style={{ fontStyle: "italic", color: "#c4622d" }}>{hero.heading_highlight}</em>
             <br />
-            nusipelno namų
+            {hero.heading_line3}
           </h1>
           <div className="flex flex-wrap gap-3">
-            <a href="/gyvunai" className="btn-primary text-sm">
-              🐾 Žiūrėti globotinius
+            <a href={hero.btn_primary_href} className="btn-primary text-sm">
+              {hero.btn_primary_text}
             </a>
             <a
-              href="/parama"
+              href={hero.btn_secondary_href}
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold border-2 transition-all text-sm"
               style={{ borderColor: "#2d1e0e", color: "#2d1e0e" }}
             >
-              ♥ Prisidėti
+              {hero.btn_secondary_text}
             </a>
           </div>
         </div>
@@ -169,32 +187,31 @@ export default function HeroBanner() {
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-28 w-full">
           <div className="max-w-lg opacity-0 animate-slide-up">
             <p className="text-[#7a4f1e] text-xs font-bold tracking-[0.22em] uppercase mb-5">
-              Gyvūnų prieglauda · Vilnius
+              {hero.label}
             </p>
             <h1
               className="font-display text-[clamp(2.8rem,6vw,5.2rem)] font-black leading-[1.04] mb-7"
               style={{ color: "#2d1e0e" }}
             >
-              Kiekviena
+              {hero.heading_line1}
               <br />
-              <em style={{ fontStyle: "italic", color: "#c4622d" }}>uodegėlė</em>
+              <em style={{ fontStyle: "italic", color: "#c4622d" }}>{hero.heading_highlight}</em>
               <br />
-              verta namų
+              {hero.heading_line3}
             </h1>
             <p className="text-[#4a2e10] text-lg leading-relaxed mb-10 font-light">
-              Mes gelbstim sužeistus ir beglobiams likusius gyvūnus. Suteikiame
-              veterinarinę pagalbą, laikiną globą ir ieškome jiems tikrų namų.
+              {hero.description}
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="/gyvunai" className="btn-primary">
-                🐾 Žiūrėti globotinius
+              <a href={hero.btn_primary_href} className="btn-primary">
+                {hero.btn_primary_text}
               </a>
               <a
-                href="/parama"
+                href={hero.btn_secondary_href}
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-semibold border-2 transition-all hover:-translate-y-0.5"
                 style={{ borderColor: "#2d1e0e", color: "#2d1e0e" }}
               >
-                ♥ Prisidėti
+                {hero.btn_secondary_text}
               </a>
             </div>
           </div>

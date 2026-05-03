@@ -6,8 +6,8 @@ import { supabase } from "@/lib/supabase";
 const DEFAULT_FOOTER = {
   phone: "+370 658 90300",
   email: "info@linksmauodegele.lt",
-  address_post: "Didlaukio g. 80A, Vilnius",
-  address_personal: "Ateities g. 25B, Vilnius",
+  address_post: "Didlaukio g. 80A, Vilnius (registracijos adresas)",
+  address_cat_house: "Ateities g. 25B, Vilnius (Tavo Katino svetainė – kačių namai)",
   facebook_url: "https://www.facebook.com/linksmauodegele",
   company_code: "306212187",
   description: "Nevyriausybinė organizacija, kuri nuo 2018 m. keičia nuskriaustų gyvūnų likimus Vilniuje.",
@@ -83,8 +83,8 @@ export default function Footer() {
                 <span>{footer.address_post}</span>
               </li>
               <li>
-                <span className="block text-[#7a5c40] text-xs uppercase tracking-wider mb-0.5">Perduoti asmeniškai</span>
-                <span>{footer.address_personal}</span>
+                <span className="block text-[#7a5c40] text-xs uppercase tracking-wider mb-0.5">Kačių namai</span>
+                <span>{footer.address_cat_house || "Ateities g. 25B, Vilnius"}</span>
               </li>
             </ul>
           </div>

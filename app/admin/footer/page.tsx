@@ -7,7 +7,7 @@ type FooterData = {
   phone: string;
   email: string;
   address_post: string;
-  address_personal: string;
+  address_cat_house: string;
   facebook_url: string;
   company_code: string;
   description: string;
@@ -18,7 +18,7 @@ const DEFAULT: FooterData = {
   phone: "+370 658 90300",
   email: "info@linksmauodegele.lt",
   address_post: "Didlaukio g. 80A, Vilnius",
-  address_personal: "Ateities g. 25B, Vilnius",
+  address_cat_house: "Ateities g. 25B, Vilnius (Tavo Katino svetainė – kačių namai)",
   facebook_url: "https://www.facebook.com/linksmauodegele",
   company_code: "306212187",
   description:
@@ -181,14 +181,14 @@ export default function FooterAdmin() {
                 />
               </div>
               <div>
-                <label className={labelClass}>Perduoti asmeniškai adresas</label>
+                <label className={labelClass}>Kačių namai adresas (Tavo Katino svetainė)</label>
                 <input
                   className={inputClass}
-                  value={form.address_personal}
+                  value={form.address_cat_house}
                   onChange={(e) =>
                     setForm((f) => ({
                       ...f,
-                      address_personal: e.target.value,
+                      address_cat_house: e.target.value,
                     }))
                   }
                 />

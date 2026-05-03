@@ -29,6 +29,7 @@ export default function AdminPage() {
     {
       group: "Medija ir išvaizda",
       items: [
+        { href: "/admin/hero", icon: "🏠", label: "Titulinis tekstas", desc: "Redaguoti antraštę, aprašymą, mygtukus" },
         { href: "/admin/video", icon: "🎬", label: "Titulinis vaizdo įrašas", desc: "Keisti YouTube nuorodą" },
         { href: "/admin/anketa", icon: "📋", label: "Adopcijos anketa", desc: "Keisti Google Forms nuorodą" },
         { href: "/admin/partners", icon: "🤝", label: "Partneriai", desc: "Valdyti partnerių logotipus ir nuorodas" },
