@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   description: "Skirkite 1,2% gyventojų pajamų mokesčio VšĮ Linksma uodegėlė per EDS sistemą. Tai nieko nekainuoja!",
 };
 
+const STEPS = [
+  { step: "1", title: "Eikite į EDS sistemą", desc: "Apsilankykite eds.vmi.lt ir prisijunkite per el. bankininkystę arba el. parašą." },
+  { step: "2", title: "Raskite FR0512 formą", desc: "Ieškokite prašymo skirti pajamų mokesčio dalį arba FR0512." },
+  { step: "3", title: "Įveskite mūsų kodą", desc: "Gavėjo paieškoje įrašykite Linksma uodegele arba kodą 306212187." },
+  { step: "4", title: "Patvirtinkite", desc: "Pateikite formą. Viskas — jūs padėjote gyvūnams nieko papildomai neišleidę!" },
+];
+
 export default function GpmPage() {
   return (
     <PageWrapper>
@@ -22,7 +29,6 @@ export default function GpmPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Left: code + button */}
             <div className="space-y-6">
               <div className="bg-white rounded-3xl p-8 shadow-sm border border-[#e8d8be]">
                 <div className="flex items-center gap-4 mb-6">
@@ -34,9 +40,8 @@ export default function GpmPage() {
                 </div>
                 <div className="font-display font-bold text-[#1e1a17] text-lg mb-2">VšĮ Linksma uodegėlė</div>
                 <p className="text-[#7a5c40] text-sm leading-relaxed mb-6">
-                  Prisijunkite prie <strong className="text-[#c4622d]">EDS sistemos</strong> ir užpildykite{" "}
-                  <strong>FR0512</strong> formą. Gavėjo paieškos langelyje įrašykite{" "}
-                  <strong>VšĮ „Linksma uodegėlė"</strong> arba kodą <strong>306212187</strong>.
+                  Prisijunkite prie <strong className="text-[#c4622d]">EDS sistemos</strong> ir užpildykite <strong>FR0512</strong> formą.
+                  Gavėjo paieškos langelyje įrašykite <strong>VšĮ Linksma uodegėlė</strong> arba kodą <strong>306212187</strong>.
                 </p>
                 <a
                   href="https://eds.vmi.lt"
@@ -48,7 +53,6 @@ export default function GpmPage() {
                 </a>
               </div>
 
-              {/* Video instruction */}
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-[#e8d8be]">
                 <h3 className="font-display font-bold text-[#1e1a17] text-lg mb-2">📹 Vaizdo instrukcija</h3>
                 <p className="text-[#7a5c40] text-sm mb-4">Žiūrėkite žingsnis po žingsnio kaip užpildyti formą:</p>
@@ -58,28 +62,18 @@ export default function GpmPage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-4 rounded-2xl border-2 border-[#e8d8be] hover:border-[#c4622d] transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#1877F2] flex items-center justify-center text-white text-xl flex-shrink-0">
-                    ▶
-                  </div>
+                  <div className="w-12 h-12 rounded-xl bg-[#1877F2] flex items-center justify-center text-white text-xl flex-shrink-0">▶</div>
                   <div>
-                    <div className="font-semibold text-[#1e1a17] text-sm group-hover:text-[#c4622d] transition-colors">
-                      Žiūrėti instrukciją Facebook
-                    </div>
+                    <div className="font-semibold text-[#1e1a17] text-sm group-hover:text-[#c4622d] transition-colors">Žiūrėti instrukciją Facebook</div>
                     <div className="text-xs text-[#7a5c40]">Kaip skirti 1,2% GPM per EDS</div>
                   </div>
                 </a>
               </div>
             </div>
 
-            {/* Right: steps */}
             <div className="space-y-4">
               <h3 className="font-display font-bold text-[#1e1a17] text-xl mb-6">Kaip tai padaryti?</h3>
-              {[
-                { step: "1", title: "Eikite į EDS sistemą", desc: "Apsilankykite eds.vmi.lt ir prisijunkite per el. bankininkystę arba el. parašą." },
-                { step: "2", title: "Raskite FR0512 formą", desc: "Ieškokite „Prašymas skirti pajamų mokesčio dalį" arba FR0512." },
-                { step: "3", title: "Įveskite mūsų kodą", desc: "Gavėjo paieškoje įrašykite „Linksma uodegėlė" arba kodą 306212187." },
-                { step: "4", title: "Patvirtinkite", desc: "Pateikite formą. Viskas — jūs padėjote gyvūnams nieko papildomai neišleidę!" },
-              ].map((s) => (
+              {STEPS.map((s) => (
                 <div key={s.step} className="flex gap-4 items-start bg-white rounded-2xl p-5 border border-[#e8d8be]">
                   <div className="w-9 h-9 rounded-full bg-[#c4622d] text-white flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                     {s.step}
@@ -90,7 +84,6 @@ export default function GpmPage() {
                   </div>
                 </div>
               ))}
-
               <div className="bg-[#fff8f0] rounded-2xl p-5 border border-[#f0d8b0] mt-4">
                 <p className="text-sm text-[#7a5c40]">
                   💡 <strong className="text-[#1e1a17]">Pastaba:</strong> Paraišką galite pateikti iki gegužės 1 d. už praėjusius metus. Tai absoliučiai nemokama — jūsų mokesčiai nuo to nepadidėja.
