@@ -35,7 +35,7 @@ export default function PartnersSection() {
               href={p.website_url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+              className="group flex items-center justify-center transition-all duration-300"
               aria-label={p.name}
               title={p.name}
             >

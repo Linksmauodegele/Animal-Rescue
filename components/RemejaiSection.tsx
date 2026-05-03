@@ -39,7 +39,7 @@ export default function RemejaiSection() {
               href={r.website_url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-all duration-300"
+              className="group flex flex-col items-center gap-2 transition-all duration-300"
               title={r.name}
             >
               <div className="h-14 px-5 flex items-center justify-center rounded-xl border border-[#e8d8be] bg-[#faf6f0] group-hover:border-[#c4622d]/30 group-hover:shadow-sm transition-all" style={{ minWidth: 110 }}>
