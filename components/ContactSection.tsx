@@ -11,14 +11,22 @@ export default function ContactSection({ fullPage = false }: { fullPage?: boolea
     setStatus("sending");
 
     try {
-      // Sends via mailto as a reliable fallback that always works
-      const subject = encodeURIComponent(`[Svetainė] ${form.subject || "Žinutė"} – ${form.name}`);
-      const body = encodeURIComponent(
-        `Vardas: ${form.name}\nEl. paštas: ${form.email}\nTema: ${form.subject}\n\nŽinutė:\n${form.message}`
-      );
-      window.location.href = `mailto:info@linksmauodegele.lt?subject=${subject}&body=${body}`;
-      setStatus("sent");
-      setForm({ name: "", email: "", subject: "", message: "" });
+      const res = await fetch("https://formspree.io/f/mqenedgv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject || "Žinutė iš svetainės",
+          message: form.message,
+        }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -83,8 +91,8 @@ export default function ContactSection({ fullPage = false }: { fullPage?: boolea
             {status === "sent" ? (
               <div className="text-center py-12">
                 <div className="text-5xl mb-4">✅</div>
-                <p className="font-semibold text-[#1e1a17] text-lg mb-2">Ačiū! Atsidaro jūsų pašto programa.</p>
-                <p className="text-[#7a5c40] text-sm mb-6">Jei ji neatsidaro, rašykite tiesiai: <a href="mailto:info@linksmauodegele.lt" className="text-[#c4622d] underline">info@linksmauodegele.lt</a></p>
+                <p className="font-semibold text-[#1e1a17] text-lg mb-2">Ačiū! Žinutė išsiųsta.</p>
+                <p className="text-[#7a5c40] text-sm mb-6">Susisieksime su jumis kuo greičiau. Jei skubu — rašykite tiesiai: <a href="mailto:info@linksmauodegele.lt" className="text-[#c4622d] underline">info@linksmauodegele.lt</a></p>
                 <button onClick={() => setStatus("idle")} className="text-sm text-[#c4622d] underline">Siųsti dar vieną</button>
               </div>
             ) : (
