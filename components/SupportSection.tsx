@@ -73,7 +73,6 @@ export default function SupportSection() {
             <p className="text-[#c9973a] font-mono text-base mt-1 font-bold tracking-wide">LT237044090104254458</p>
             <p className="text-[#8aab7a] text-xs mt-1">(SEB)</p>
             <div className="mt-3 pt-3 border-t border-white/10 text-xs text-[#8aab7a]">
-            <div className="mt-3 pt-3 border-t border-white/10 text-xs text-[#8aab7a]">
               Paskirtis: <span className="text-white font-semibold">Auka</span>
             </div>
         </div>
