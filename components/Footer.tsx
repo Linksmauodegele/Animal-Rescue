@@ -93,7 +93,7 @@ export default function Footer() {
         <div className="border-t border-[#30261e] pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs">© {new Date().getFullYear()} VšĮ Linksma uodegėlė · Visos teisės saugomos</p>
           <p className="text-xs text-[#5c3d1e]">Įmonės kodas: {footer.company_code} · Vilnius, Lietuva</p>
-          <a href="https://sweetnet.lt" target="_blank" rel="noopener noreferrer" className="text-xs text-[#3d2a1a] hover:text-[#b0946a] transition-colors">Sukūrė sweetnet.lt</a>
+          <a href="https://sweetnet.lt" target="_blank" rel="noopener noreferrer" className="text-xs text-[#b0946a] hover:text-white transition-colors font-semibold">⚡ Sukūrė sweetnet.lt</a>
         </div>
       </div>
     </footer>
