@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 
 type Post = {
@@ -71,11 +70,11 @@ export default function BlogSection({ fullPage = false }: { fullPage?: boolean }
               <article key={post.id}
                 className="card-hover rounded-2xl overflow-hidden bg-white border border-[#e8d8be] opacity-0 animate-slide-up"
                 style={{ animationDelay: `${i * 0.12}s`, animationFillMode: "forwards" }}>
-                <div className="h-32 relative flex items-center justify-center text-5xl overflow-hidden"
+                <div className="h-48 overflow-hidden"
                   style={{ background: COLORS[i % COLORS.length] }}>
                   {post.cover_image_url
-                    ? <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
-                    : EMOJIS[i % EMOJIS.length]}
+                    ? <img src={post.cover_image_url} alt={post.title} className="w-full h-full object-cover" />
+                    : <div className="w-full h-full flex items-center justify-center text-5xl">{EMOJIS[i % EMOJIS.length]}</div>}
                 </div>
                 <div className="p-6">
                   <p className="text-xs text-[#7a5c40] mb-2">
