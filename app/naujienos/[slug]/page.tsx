@@ -10,6 +10,11 @@ type Post = {
   content: string; cover_image_url: string; video_url: string; published_at: string;
 };
 
+function getYoutubeId(url: string) {
+  const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  return m?.[1] ?? null;
+}
+
 export default function PostPage() {
   const { slug } = useParams();
   const [post, setPost] = useState<Post | null>(null);
@@ -23,42 +28,83 @@ export default function PostPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#f8f0e3] pt-32 pb-24">
-        <div className="max-w-3xl mx-auto px-6">
-          <a href="/naujienos" className="text-[#c4622d] hover:underline text-sm mb-8 block">← Visos naujienos</a>
+      <main className="min-h-screen bg-[#f5ede0] pt-28 pb-24">
+        <div className="max-w-2xl mx-auto px-6">
+          <a href="/naujienos"
+            className="inline-flex items-center gap-1.5 text-sm text-[#c4622d] hover:text-[#a84e22] font-medium mb-8 transition-colors">
+            ← Visos naujienos
+          </a>
+
           {loading ? (
-            <div className="text-center py-16 text-[#7a5c40]">Kraunama...</div>
+            <div className="text-center py-24 text-[#7a5c40]">Kraunama...</div>
           ) : !post ? (
-            <div className="text-center py-16 text-[#7a5c40]">Straipsnis nerastas.</div>
+            <div className="text-center py-24 text-[#7a5c40]">Straipsnis nerastas.</div>
           ) : (
-            <article className="bg-white rounded-3xl overflow-hidden border border-[#e8d8be] shadow-sm">
+            <article>
+              {/* Cover image */}
               {post.cover_image_url && (
-                <img src={post.cover_image_url} className="w-full h-64 object-cover" />
+                <div className="rounded-2xl overflow-hidden mb-6 border border-[#e8d8be] shadow-sm"
+                  style={{ maxHeight: "380px" }}>
+                  <img src={post.cover_image_url} alt={post.title}
+                    className="w-full object-cover" style={{ maxHeight: "380px" }} />
+                </div>
               )}
+
+              {/* Header */}
+              <div className="mb-8">
+                {post.published_at && (
+                  <p className="text-xs font-semibold text-[#b0946a] uppercase tracking-wider mb-3">
+                    {new Date(post.published_at).toLocaleDateString("lt-LT", { year: "numeric", month: "long", day: "numeric" })}
+                  </p>
+                )}
+                <h1 className="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold text-[#1e1a17] leading-tight mb-4">
+                  {post.title}
+                </h1>
+                {post.excerpt && (
+                  <p className="text-lg text-[#7a5c40] leading-relaxed border-l-4 border-[#c4622d] pl-4">
+                    {post.excerpt}
+                  </p>
+                )}
+              </div>
+
+              {/* Video (only if no content or explicitly added) */}
               {post.video_url && (() => {
-                const ytMatch = post.video_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
-                const embedId = ytMatch?.[1];
-                return embedId ? (
-                  <div className="aspect-video bg-black">
-                    <iframe
-                      className="w-full h-full"
-                      src={`https://www.youtube.com/embed/${embedId}`}
-                      title="Video"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                const ytId = getYoutubeId(post.video_url);
+                return (
+                  <div className="rounded-2xl overflow-hidden mb-8 border border-[#e8d8be] shadow-sm">
+                    {ytId ? (
+                      <div className="aspect-video">
+                        <iframe className="w-full h-full"
+                          src={`https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`}
+                          title={post.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen />
+                      </div>
+                    ) : (
+                      <video src={post.video_url} controls className="w-full" />
+                    )}
                   </div>
-                ) : (
-                  <video src={post.video_url} controls className="w-full max-h-96 bg-black" />
                 );
               })()}
-              <div className="p-10">
-                <p className="text-xs text-[#7a5c40] mb-3">
-                  {post.published_at ? new Date(post.published_at).toLocaleDateString("lt-LT", { year: "numeric", month: "long", day: "numeric" }) : ""}
-                </p>
-                <h1 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-[#1e1a17] mb-6 leading-snug">{post.title}</h1>
-                <div className="text-[#5c3d1e] leading-relaxed prose prose-stone max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content || post.excerpt }} />
+
+              {/* Content */}
+              {post.content && (
+                <div className="bg-white rounded-2xl p-8 border border-[#e8d8be] shadow-sm">
+                  <div className="prose prose-stone max-w-none text-[#3d2e1e] leading-relaxed"
+                    style={{
+                      fontSize: "1.0625rem",
+                      lineHeight: "1.8",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: post.content }} />
+                </div>
+              )}
+
+              {/* Footer nav */}
+              <div className="mt-10 pt-8 border-t border-[#e8d8be]">
+                <a href="/naujienos"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#c4622d] text-white font-semibold text-sm hover:bg-[#a84e22] transition-colors">
+                  ← Grįžti į naujienas
+                </a>
               </div>
             </article>
           )}
