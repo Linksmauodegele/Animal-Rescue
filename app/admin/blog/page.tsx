@@ -30,13 +30,16 @@ export default function BlogAdmin() {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { fetchPosts(); }, []);
 
   async function fetchPosts() {
-    const { data } = await supabase.from("posts").select("*").order("created_at", { ascending: false });
-    if (data) setPosts(data);
+    setError(null);
+    const { data, error: err } = await supabase.from("posts").select("*").order("created_at", { ascending: false });
+    if (err) setError(`Klaida kraunant straipsnius: ${err.message}`);
+    else if (data) setPosts(data);
   }
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -55,15 +58,18 @@ export default function BlogAdmin() {
 
   async function handleSave() {
     setLoading(true);
+    setError(null);
     const payload = {
       ...form,
       published_at: form.published && !form.published_at ? new Date().toISOString() : form.published_at,
     };
+    let err;
     if (editId) {
-      await supabase.from("posts").update(payload).eq("id", editId);
+      ({ error: err } = await supabase.from("posts").update(payload).eq("id", editId));
     } else {
-      await supabase.from("posts").insert(payload);
+      ({ error: err } = await supabase.from("posts").insert(payload));
     }
+    if (err) { setError(`Klaida išsaugant: ${err.message}`); setLoading(false); return; }
     await fetchPosts();
     setForm(EMPTY);
     setEditId(null);
@@ -73,7 +79,8 @@ export default function BlogAdmin() {
 
   async function handleDelete(id: string) {
     if (!confirm("Ar tikrai norite ištrinti?")) return;
-    await supabase.from("posts").delete().eq("id", id);
+    const { error: err } = await supabase.from("posts").delete().eq("id", id);
+    if (err) { setError(`Klaida trinant: ${err.message}`); return; }
     await fetchPosts();
   }
 
@@ -105,6 +112,12 @@ export default function BlogAdmin() {
             + Naujas straipsnis
           </button>
         </div>
+
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+            ⚠️ {error}
+          </div>
+        )}
 
         {showForm && (
           <div className="bg-white rounded-3xl p-8 border border-[#e8d8be] shadow-sm mb-8">
