@@ -19,6 +19,7 @@ export default function AdminPage() {
         { href: "/admin/apie", icon: "ℹ️", label: "Apie mus", desc: "Redaguoti tekstą ir vertybes" },
         { href: "/admin/blog", icon: "📝", label: "Naujienos / Tinklaraštis", desc: "Rašyti ir valdyti straipsnius" },
         { href: "/admin/projects", icon: "🚀", label: "Projektai", desc: "Valdyti projektus ir kampanijas" },
+        { href: "/admin/parama", icon: "💰", label: "Parama", desc: "Redaguoti visus 4 paramos puslapius" },
       ],
     },
     {
