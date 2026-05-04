@@ -34,25 +34,38 @@ export default function ProjectsAdmin() {
   const [editId, setEditId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProjects();
   }, []);
 
   async function fetchProjects() {
-    const { data } = await supabase
+    setError(null);
+    const { data, error: err } = await supabase
       .from("projects")
       .select("*")
       .order("sort_order", { ascending: true });
-    if (data) setProjects(data);
+    if (err) {
+      setError(`Klaida kraunant projektus: ${err.message}`);
+    } else if (data) {
+      setProjects(data);
+    }
   }
 
   async function handleSave() {
     setLoading(true);
+    setError(null);
+    let err;
     if (editId) {
-      await supabase.from("projects").update(form).eq("id", editId);
+      ({ error: err } = await supabase.from("projects").update(form).eq("id", editId));
     } else {
-      await supabase.from("projects").insert(form);
+      ({ error: err } = await supabase.from("projects").insert(form));
+    }
+    if (err) {
+      setError(`Klaida išsaugant: ${err.message}`);
+      setLoading(false);
+      return;
     }
     await fetchProjects();
     setForm(EMPTY);
@@ -63,7 +76,8 @@ export default function ProjectsAdmin() {
 
   async function handleDelete(id: string) {
     if (!confirm("Ar tikrai norite ištrinti šį projektą?")) return;
-    await supabase.from("projects").delete().eq("id", id);
+    const { error: err } = await supabase.from("projects").delete().eq("id", id);
+    if (err) { setError(`Klaida trinant: ${err.message}`); return; }
     await fetchProjects();
   }
 
@@ -93,6 +107,16 @@ export default function ProjectsAdmin() {
             🚀 Projektai
           </h1>
         </div>
+
+        {/* Error banner */}
+        {error && (
+          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+            ⚠️ {error}
+            <div className="mt-2 text-xs text-red-500">
+              Patikrinkite ar Supabase lentelė <code>projects</code> egzistuoja ir ar RLS leistų insert/update/delete autentifikuotam vartotojui.
+            </div>
+          </div>
+        )}
 
         {/* Project list */}
         <div className="space-y-3 mb-6">

@@ -9,14 +9,16 @@ const DEFAULT_FOOTER = {
   address_post: "Didlaukio g. 78-16, Vilnius",
   address_cat_house: "Ateities g. 25B, Vilnius (Tavo Katino svetainė – kačių namai)",
   facebook_url: "https://www.facebook.com/linksmauodegele",
+  instagram_url: "https://www.instagram.com/linksma.uodegele",
+  tiktok_url: "https://www.tiktok.com/@vsi.linksmauodegele",
   company_code: "306212187",
   description: "Nevyriausybinė organizacija, kuri nuo 2018 m. keičia nuskriaustų gyvūnų likimus Vilniuje.",
   nav_links: [
     { href: "/gyvunai", label: "Globotiniai" },
     { href: "/apie", label: "Apie mus" },
     { href: "/parama", label: "Paremti" },
-    { href: "/parama#daiktai", label: "Parama daiktais" },
-    { href: "/parama#isigyk", label: "Įsigyk sau" },
+    { href: "/parama/daiktai", label: "Parama daiktais" },
+    { href: "/parama/isigyk", label: "Įsigyk sau" },
     { href: "/naujienos", label: "Naujienos" },
     { href: "/kontaktai", label: "Kontaktai" },
   ],
@@ -30,7 +32,10 @@ export default function Footer() {
       const { data } = await supabase.from("footer_settings").select("*").limit(1).single();
       if (data) {
         setFooter({
+          ...DEFAULT_FOOTER,
           ...data,
+          instagram_url: data.instagram_url ?? DEFAULT_FOOTER.instagram_url,
+          tiktok_url: data.tiktok_url ?? DEFAULT_FOOTER.tiktok_url,
           nav_links: typeof data.nav_links === "string" ? JSON.parse(data.nav_links) : (data.nav_links ?? DEFAULT_FOOTER.nav_links),
         });
       }
@@ -50,10 +55,24 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">{footer.description}</p>
-            <a href={footer.facebook_url} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-4 text-sm text-[#c4622d] hover:text-[#e07a4a] transition-colors">
-              📘 Facebook puslapiukas
-            </a>
+            <div className="flex flex-col gap-2 mt-4">
+              <a href={footer.facebook_url} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-[#c4622d] hover:text-[#e07a4a] transition-colors">
+                📘 Facebook puslapiukas
+              </a>
+              {footer.instagram_url && (
+                <a href={footer.instagram_url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[#c4622d] hover:text-[#e07a4a] transition-colors">
+                  📸 Instagram
+                </a>
+              )}
+              {footer.tiktok_url && (
+                <a href={footer.tiktok_url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[#c4622d] hover:text-[#e07a4a] transition-colors">
+                  🎵 TikTok
+                </a>
+              )}
+            </div>
           </div>
 
           <div>

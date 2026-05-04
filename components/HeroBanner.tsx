@@ -6,7 +6,7 @@ export default function HeroBanner() {
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const [hero, setHero] = useState({
-    label: "{hero.label}",
+    label: "Gyvūnų prieglauda Vilniuje",
     heading_line1: "Kiekviena",
     heading_highlight: "uodegėlė",
     heading_line3: "verta namų",
