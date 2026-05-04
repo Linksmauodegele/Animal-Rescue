@@ -41,14 +41,18 @@ export default function IsigykPage() {
               <em className="italic text-[#c4622d]">padėk gyvūnui</em>
             </h1>
             <p className="text-[#7a5c40] max-w-2xl mx-auto">
-              Mūsų sekėjos Anos rankų darbo mezginiai. Visos sukauptos lėšos skiriamos globotinių priežiūrai ir gydymui.
+              Mūsų sekėjos Anos rankų darbo mezginiai. Visos sukauptos lėšos
+              skiriamos globotinių priežiūrai ir gydymui.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {loading ? (
               Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#e8d8be] animate-pulse">
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl overflow-hidden border border-[#e8d8be] animate-pulse"
+                >
                   <div className="h-40 bg-[#f0e6d0]" />
                   <div className="p-5 space-y-2">
                     <div className="h-4 bg-[#f0e6d0] rounded w-3/4" />
@@ -84,10 +88,16 @@ export default function IsigykPage() {
                   </div>
                   <div className="p-5">
                     <div className="flex items-start justify-between mb-2">
-                      <h2 className="font-display font-bold text-[#1e1a17]">{product.title}</h2>
-                      <span className="text-[#c4622d] font-bold text-lg ml-2 flex-shrink-0">{product.price}</span>
+                      <h2 className="font-display font-bold text-[#1e1a17]">
+                        {product.title}
+                      </h2>
+                      <span className="text-[#c4622d] font-bold text-lg ml-2 flex-shrink-0">
+                        {product.price}€
+                      </span>
                     </div>
-                    <p className="text-sm text-[#7a5c40]">{product.description}</p>
+                    <p className="text-sm text-[#7a5c40]">
+                      {product.description}
+                    </p>
                   </div>
                 </div>
               ))
@@ -96,7 +106,9 @@ export default function IsigykPage() {
 
           <div className="max-w-2xl mx-auto bg-white rounded-3xl p-8 border border-[#e8d8be] shadow-sm">
             <div className="text-center mb-6">
-              <p className="text-[#1e1a17] font-semibold text-lg">Norint įsigyti – skambinkite tel.</p>
+              <p className="text-[#1e1a17] font-semibold text-lg">
+                Norint įsigyti – skambinkite tel.
+              </p>
               <a
                 href="tel:+37065890300"
                 className="text-[#c4622d] font-bold text-2xl hover:text-[#a84d20] transition-colors"
@@ -107,7 +119,9 @@ export default function IsigykPage() {
             </div>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">Vardas</label>
+                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">
+                  Vardas
+                </label>
                 <input
                   type="text"
                   className="w-full px-4 py-2.5 rounded-xl border border-[#e8d8be] bg-[#faf7f2] text-[#1e1a17] focus:outline-none focus:ring-2 focus:ring-[#c4622d]/30 focus:border-[#c4622d]"
@@ -115,7 +129,9 @@ export default function IsigykPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">El. paštas *</label>
+                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">
+                  El. paštas *
+                </label>
                 <input
                   type="email"
                   required
@@ -124,7 +140,9 @@ export default function IsigykPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">Žinutė *</label>
+                <label className="block text-sm font-medium text-[#5c3d1e] mb-1">
+                  Žinutė *
+                </label>
                 <textarea
                   required
                   rows={4}
