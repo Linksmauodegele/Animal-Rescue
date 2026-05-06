@@ -88,8 +88,8 @@ export default function AdoptuotiPage() {
             <div className="bg-white rounded-3xl border border-[#e8d8be] shadow-sm overflow-hidden mb-10">
               {/* Main image */}
               {activeImg && (
-                <div className="w-full h-72 overflow-hidden">
-                  <img src={activeImg} alt={animal.name} className="w-full h-full object-cover" />
+                <div className="w-full overflow-hidden bg-[#f5f0ea]">
+                  <img src={activeImg} alt={animal.name} className="w-full h-full object-contain block" />
                 </div>
               )}
 
@@ -99,7 +99,7 @@ export default function AdoptuotiPage() {
                   {allImages.map((url, i) => (
                     <button key={i} onClick={() => setActiveImg(url)}
                       className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all ${activeImg === url ? "border-[#c4622d]" : "border-transparent opacity-60 hover:opacity-100"}`}>
-                      <img src={url} className="w-full h-full object-cover" />
+                      <img src={url} className="w-full h-full object-cover block" />
                     </button>
                   ))}
                 </div>
